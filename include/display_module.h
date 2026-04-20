@@ -4,6 +4,8 @@
 #include <U8g2lib.h>
 #include <Wire.h>
 
-void inicializarPantalla();
+void setupDisplay();
+// Solo recibe las variables para dibujarlas, no las modifica
+void dibujarPantalla(int menuIndex, bool enSubMenu, String items[], int numItems);
 
 #endif

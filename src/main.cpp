@@ -1,11 +1,28 @@
 #include <Arduino.h>
-#include <led_control.h>
+#include "joystick_module.h"
+#include "display_module.h"
+#include "nfc_module.h"
+#include "sd_module.h" 
+
+const int NUM_ITEMS = 4;
+String menuItems[NUM_ITEMS] = {"RFID / NFC", "Opcion 2", "Opcion 3", "Opcion 4"};
+
+int indiceActual = 0;      
+bool dentroDeOpcion = false; 
 
 void setup() {
-//setupLED(); // Configuramos el pin del LED
-Serial.begin(115200);
+  setupJoystick();
+  setupDisplay();
+  setupNFC();
+  setupSD(); 
 }
 
 void loop() {
-parpadearLED(500);
+  actualizarJoystick(indiceActual, dentroDeOpcion, NUM_ITEMS);
+
+  if (dentroDeOpcion && indiceActual == 0) {
+      flujoCapturaRFID(dentroDeOpcion);
+  } else {
+      dibujarPantalla(indiceActual, dentroDeOpcion, menuItems, NUM_ITEMS);
+  }
 }
