@@ -35,3 +35,13 @@ String leerListaTarjetas() {
 void borrarTodasLasTarjetas() {
     SD.remove("/tarjetas.txt");
 }
+
+//Módulo IR
+void guardarIR(String codigo) {
+    // Abre (o crea si no existe) el archivo controles.txt y añade el texto al final
+    File file = SD.open("/controles.txt", FILE_APPEND);
+    if (file) {
+        file.println(codigo);
+        file.close();
+    }
+}

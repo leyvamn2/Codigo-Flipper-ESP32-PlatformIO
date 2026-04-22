@@ -12,4 +12,7 @@ void guardarTarjeta(String uid);
 String leerListaTarjetas();
 void borrarTodasLasTarjetas();
 
+//función RFID
+void guardarIR(String codigo);
+
 #endif

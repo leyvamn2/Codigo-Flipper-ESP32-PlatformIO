@@ -3,10 +3,12 @@
 #include "joystick_module.h"
 #include "display_module.h"
 #include "nfc_module.h"
+//Módulo IR
+#include "ir_module.h"
 #include "sd_module.h" 
 
 const int NUM_ITEMS = 4;
-String menuItems[NUM_ITEMS] = {"RFID / NFC", "Opcion 2", "Opcion 3", "Opcion 4"};
+String menuItems[NUM_ITEMS] = {"RFID / NFC", "Infrarrojo IR", "Opcion 3", "Opcion 4"};
 
 int indiceActual = 0;      
 bool dentroDeOpcion = false; 
@@ -17,6 +19,7 @@ void setup() {
   setupDisplay();
   setupNFC();
   setupSD(); 
+  setupIR();
 }
 
 void loop() {
@@ -24,7 +27,12 @@ void loop() {
 
   if (dentroDeOpcion && indiceActual == 0) {
       flujoCapturaRFID(dentroDeOpcion);
-  } else {
+  }
+  //Módulo IR
+  else if(dentroDeOpcion && indiceActual==1){
+    flujoInfrarrojo(dentroDeOpcion);
+  }
+  else {
       dibujarPantalla(indiceActual, dentroDeOpcion, menuItems, NUM_ITEMS);
   }
 }
