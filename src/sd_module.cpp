@@ -1,6 +1,14 @@
 #include "sd_module.h"
 
+// Le decimos explícitamente a la S3 cuáles son los pines SPI de tu diagrama
+#define SPI_SCK  18
+#define SPI_MISO 19
+#define SPI_MOSI 23
+
 bool setupSD() {
+    // Inicializamos el bus SPI con tus pines
+    SPI.begin(SPI_SCK, SPI_MISO, SPI_MOSI, SD_CS); 
+    
     if (!SD.begin(SD_CS)) return false;
     return true;
 }

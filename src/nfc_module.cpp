@@ -3,13 +3,16 @@
 #define JOY_Y  35
 #define JOY_SW 32
 
-Adafruit_PN532 nfc(25, 26);
+#define PN532_IRQ   (21)  
+#define PN532_RESET (5) 
 
+Adafruit_PN532 nfc(PN532_IRQ, PN532_RESET);
 uint8_t uidLeido[7];
 uint8_t uidLongitud = 0;
 String uidString = "";
 
 void setupNFC() {
+    
     nfc.begin();
     nfc.SAMConfig();
 }
@@ -130,9 +133,10 @@ void flujoCapturaRFID(bool &dentroDeOpcion) {
             display.sendBuffer();
             delay(1500);
             
-        } else if (indexNFC == 2) {
+        }  else if (indexNFC == 2) {
             // 3. Guardar ID
-            display.drawStr(20, 30, "Funcion Guardar...");
+            guardarTarjeta(obtenerUltimoUID()); // <-- AGREGA ESTA LÍNEA
+            display.drawStr(20, 30, "ID Guardado en SD!");
             display.sendBuffer();
             delay(1500);
             

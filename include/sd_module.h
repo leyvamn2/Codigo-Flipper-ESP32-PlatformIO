@@ -5,7 +5,7 @@
 #include <SD.h>
 #include <SPI.h>
 
-#define SD_CS 5
+#define SD_CS 15
 
 bool setupSD();
 void guardarTarjeta(String uid);

@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <Wire.h>
 #include "joystick_module.h"
 #include "display_module.h"
 #include "nfc_module.h"
@@ -11,6 +12,7 @@ int indiceActual = 0;
 bool dentroDeOpcion = false; 
 
 void setup() {
+  Wire.begin(25, 26);
   setupJoystick();
   setupDisplay();
   setupNFC();
