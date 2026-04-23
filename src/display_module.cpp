@@ -20,7 +20,7 @@ void dibujarPantalla(int menuIndex, bool enSubMenu, String items[], int numItems
     display.drawLine(0, 14, 128, 14);
 
     for (int i = 0; i < numItems; i++) {
-      int yPos = 30 + (i * 12); // Estos píxeles cuadran perfecto en ambas pantallas
+      int yPos = 30 + (i * 12);
       if (i == menuIndex) {
         display.drawStr(0, yPos, ">"); 
       }

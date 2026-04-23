@@ -9,8 +9,8 @@ void setupJoystick() {
 
 void actualizarJoystick(int &menuIndex, bool &enSubMenu, int numItems) {
   if (!enSubMenu) {
+    // Menú principal - navegar
     int valorY = analogRead(JOY_Y);
-    
     if (valorY < 1000) { 
       if (menuIndex > 0) menuIndex--;
       delay(200);
@@ -19,14 +19,13 @@ void actualizarJoystick(int &menuIndex, bool &enSubMenu, int numItems) {
       if (menuIndex < numItems - 1) menuIndex++;
       delay(200);
     }
-
     if (digitalRead(JOY_SW) == LOW) {
-      enSubMenu = true;
+      enSubMenu = true;  // ✅ Entra al submenu
       delay(300); 
     }
   } else {
     if (digitalRead(JOY_SW) == LOW) {
-      enSubMenu = false;
+      enSubMenu = false;  // ✅ Regresa al menú
       delay(300); 
     }
   }

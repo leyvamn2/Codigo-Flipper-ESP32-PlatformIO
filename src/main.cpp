@@ -3,7 +3,6 @@
 #include "joystick_module.h"
 #include "display_module.h"
 #include "nfc_module.h"
-//Módulo IR
 #include "ir_module.h"
 #include "sd_module.h" 
 
@@ -24,7 +23,7 @@ void setup() {
 
 void loop() {
   actualizarJoystick(indiceActual, dentroDeOpcion, NUM_ITEMS);
-
+  //Módulo NFC/RFID
   if (dentroDeOpcion && indiceActual == 0) {
       flujoCapturaRFID(dentroDeOpcion);
   }
@@ -34,5 +33,7 @@ void loop() {
   }
   else {
       dibujarPantalla(indiceActual, dentroDeOpcion, menuItems, NUM_ITEMS);
+  
+      delay(50);  // Pequeña pausa para evitar lecturas demasiado rápidas
   }
 }

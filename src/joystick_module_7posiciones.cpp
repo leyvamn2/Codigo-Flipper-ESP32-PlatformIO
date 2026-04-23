@@ -20,10 +20,10 @@ void actualizarJoystick(int &menuIndex, bool &enSubMenu, int numItems) {
     // Si se presiona hacia ABAJO (el pin se va a LOW)
     if (digitalRead(JOY_DOWN) == LOW) { 
       if (menuIndex < numItems - 1) menuIndex++;
-      delay(200); // Antirrebote
+      delay(200); 
     }
 
-    // Si se presiona el CENTRO
+    // Si se presiona CENTRO
     if (digitalRead(JOY_SW) == LOW) {
       enSubMenu = true;
       delay(300); 

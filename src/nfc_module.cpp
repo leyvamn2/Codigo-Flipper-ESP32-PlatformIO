@@ -12,9 +12,19 @@ uint8_t uidLongitud = 0;
 String uidString = "";
 
 void setupNFC() {
+    Wire.begin(21, 22);          // SDA=21, SCL=22 (pines por defecto de I2C en ESP32)
+    nfc.begin();               
     
-    nfc.begin();
-    nfc.SAMConfig();
+    uint32_t version = nfc.getFirmwareVersion();
+    if (!version) {
+        Serial.println("Error: PN532 no encontrado. Revisa conexiones o modo I2C.");
+        while (1);               // Detener ejecución
+    }
+    Serial.print("PN532 firmware: 0x");
+    Serial.println(version, HEX);
+    
+    nfc.SAMConfig();             // Configurar modo normal (seguridad pasiva)
+    Serial.println("NFC listo.");
 }
 
 bool capturarUID() {
@@ -63,6 +73,7 @@ bool clonarTarjeta() {
     bloque0[5] = 0x08; 
     bloque0[6] = 0x04; 
     bloque0[7] = 0x00; 
+
     return nfc.mifareclassic_WriteDataBlock(0, bloque0);
 }
 
