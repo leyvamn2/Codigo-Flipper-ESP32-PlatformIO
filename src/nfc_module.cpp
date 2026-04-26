@@ -12,7 +12,7 @@ uint8_t uidLongitud = 0;
 String uidString = "";
 
 void setupNFC() {
-    Wire.begin(21, 22);          // SDA=21, SCL=22 (pines por defecto de I2C en ESP32)
+    Wire.begin(25, 26);          // SDA=25, SCL=26 (pines por defecto de I2C en ESP32)
     nfc.begin();               
     
     uint32_t version = nfc.getFirmwareVersion();

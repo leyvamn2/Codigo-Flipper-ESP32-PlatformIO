@@ -1,3 +1,4 @@
+/*
 #include "joystick_module.h"
 
 #define JOY_UP    35  // Pin conectado a "UP"
@@ -37,3 +38,4 @@ void actualizarJoystick(int &menuIndex, bool &enSubMenu, int numItems) {
   }
 }
 
+*/
