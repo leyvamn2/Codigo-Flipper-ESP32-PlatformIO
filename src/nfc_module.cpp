@@ -18,7 +18,7 @@ void setupNFC() {
     uint32_t version = nfc.getFirmwareVersion();
     if (!version) {
         Serial.println("Error: PN532 no encontrado. Revisa conexiones o modo I2C.");
-        while (1);               // Detener ejecución
+                // Detener ejecución
     }
     Serial.print("PN532 firmware: 0x");
     Serial.println(version, HEX);

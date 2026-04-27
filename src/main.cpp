@@ -18,7 +18,7 @@ bool dentroDeOpcion = false;
 
 void setup() {
   Serial.begin(115200);
-  Wire.begin(25, 26);
+  Wire.begin(21,22);
   setupBattery();
   setupJoystick();
   setupDisplay();
@@ -28,7 +28,7 @@ void setup() {
 }
 
 void loop() {
-  checkSleepMode();  // Verifica switch de sleep
+  checkSleepMode(dentroDeOpcion);;  // Verifica switch de sleep
   
   actualizarJoystick(indiceActual, dentroDeOpcion, NUM_ITEMS);
 
@@ -44,9 +44,7 @@ void loop() {
   else if (dentroDeOpcion && indiceActual == 3) {
       flujoBluetooth(dentroDeOpcion);
   }
-  else if (dentroDeOpcion && indiceActual == 4) {
-      flujoBadUSB(dentroDeOpcion);   // Solo si usas ESP32-S3
-  }
+
   else {
       // Menú principal
       dibujarPantalla(indiceActual, dentroDeOpcion, menuItems, NUM_ITEMS);
