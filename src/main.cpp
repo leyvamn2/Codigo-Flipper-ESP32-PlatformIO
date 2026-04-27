@@ -7,6 +7,8 @@
 #include "sd_module.h"
 #include "wifi_module.h"
 #include "bt_module.h"
+#include "battery_module.h"
+#include "sleep_module.h"
 
 const int NUM_ITEMS = 4;
 String menuItems[NUM_ITEMS] = {"RFID / NFC", "Infrarrojo IR", "WiFi", "Bluetooth"};
@@ -17,6 +19,7 @@ bool dentroDeOpcion = false;
 void setup() {
   Serial.begin(115200);
   Wire.begin(25, 26);
+  setupBattery();
   setupJoystick();
   setupDisplay();
   setupNFC();
@@ -25,8 +28,10 @@ void setup() {
 }
 
 void loop() {
-  actualizarJoystick(indiceActual, dentroDeOpcion, NUM_ITEMS);
+  checkSleepMode();  // Verifica switch de sleep
   
+  actualizarJoystick(indiceActual, dentroDeOpcion, NUM_ITEMS);
+
   if (dentroDeOpcion && indiceActual == 0) {
       flujoCapturaRFID(dentroDeOpcion);
   }
@@ -38,9 +43,20 @@ void loop() {
   }
   else if (dentroDeOpcion && indiceActual == 3) {
       flujoBluetooth(dentroDeOpcion);
-  } 
+  }
+  else if (dentroDeOpcion && indiceActual == 4) {
+      flujoBadUSB(dentroDeOpcion);   // Solo si usas ESP32-S3
+  }
   else {
+      // Menú principal
       dibujarPantalla(indiceActual, dentroDeOpcion, menuItems, NUM_ITEMS);
+      
+      // Dibuja batería en esquina superior derecha (x=110, y=0)
+      drawBatteryIcon(display, 110, 0);
+      
+      // Envía TODO junto: menú + batería
+      display.sendBuffer();
+      
       delay(50);
   }
 }

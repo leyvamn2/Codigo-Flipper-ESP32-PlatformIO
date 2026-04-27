@@ -31,11 +31,13 @@ void setupWiFi() {
     wifiActive = true;
     wifiStartTime = millis();
     Serial.println("[OK] WiFi STA mode iniciado");
+    
+    // ✅ CAMBIO: Solo mostrar brevemente, sin esperar botón
     display.clearBuffer();
     display.setFont(u8g2_font_6x12_tr);
     display.drawStr(10, 30, "WiFi Iniciado");
     display.sendBuffer();
-    delay(1000);
+    delay(500);  
 }
 
 void stopWiFi() {
