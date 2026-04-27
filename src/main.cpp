@@ -18,7 +18,7 @@ bool dentroDeOpcion = false;
 
 void setup() {
   Serial.begin(115200);
-  Wire.begin(21,22);
+  Wire.begin();
   setupBattery();
   setupJoystick();
   setupDisplay();
