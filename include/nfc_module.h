@@ -14,6 +14,8 @@ bool capturarUID();
 String obtenerUltimoUID();
 bool clonarTarjeta();
 void flujoCapturaRFID(bool &dentroDeOpcion);
+void mostrarSenalesGuardadas();
+
 
 #endif
 
