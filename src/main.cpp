@@ -28,12 +28,11 @@ void setup() {
 }
 
 void loop() {
-  checkSleepMode(dentroDeOpcion);;  // Verifica switch de sleep
   
   actualizarJoystick(indiceActual, dentroDeOpcion, NUM_ITEMS);
 
   if (dentroDeOpcion && indiceActual == 0) {
-      flujoCapturaRFID(dentroDeOpcion);
+      flujoNFC(dentroDeOpcion);
   }
   else if (dentroDeOpcion && indiceActual == 1) {
       flujoInfrarrojo(dentroDeOpcion);
@@ -50,7 +49,6 @@ void loop() {
       dibujarPantalla(indiceActual, dentroDeOpcion, menuItems, NUM_ITEMS);
       
       // Dibuja batería en esquina superior derecha (x=110, y=0)
-      drawBatteryIcon(display, 110, 0);
       
       // Envía TODO junto: menú + batería
       display.sendBuffer();

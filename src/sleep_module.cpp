@@ -4,9 +4,11 @@
 #include "bt_module.h"
 #include <esp_sleep.h>
 
-extern U8G2_SSD1306_128X64_NONAME_F_HW_I2C display;
+#define SLEEP_PIN 12 // GPIO para el switch de sleep (conecta a GND para dormir)
+extern U8G2_SH1106_128X64_NONAME_F_HW_I2C display;
 extern bool wifiActive;
 extern bool btActive;
+
 
 void setupSleep() {
     pinMode(SLEEP_PIN, INPUT_PULLUP); // Switch conecta a GND cuando está "ON/Sleep"

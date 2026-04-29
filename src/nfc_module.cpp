@@ -72,7 +72,7 @@ bool clonarTarjeta() {
 }
 
 // --- VISUALIZAR SD ---
-void mostrarSeñalesGuardadas() {
+void mostrarSenialesGuardadas() {
     bool viendo = true;
     while (viendo) {
         display.clearBuffer();
@@ -171,7 +171,7 @@ void flujoNFC(bool &dentroDeOpcion) {
                 }
                 if (uidString != "") menuPostCaptura(uidString);
             } 
-            else if (indexNFC == 1) mostrarSeñalesGuardadas();
+            else if (indexNFC == 1) mostrarSenialesGuardadas();
             else if (indexNFC == 2) dentroDeOpcion = false;
         }
     }
